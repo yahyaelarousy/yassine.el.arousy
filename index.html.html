@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Portfolio</title>
+    <style>
+        body {
+            margin: 0; /* Réinitialiser les marges pour un layout plus propre */
+            font-family: Arial, sans-serif;
+            color: #050203; /* Couleur du texte par défaut */
+            overflow-x: hidden; /* Empêcher le défilement horizontal */
+        }
+
+        .background-container {
+            position: relative; /* Pour positionner les éléments enfants */
+            background-image: url('file:///C:/Users/dell/Desktop/projet%201/75ez.gif'); /* Chemin vers le GIF d'arrière-plan */
+            background-size: cover; /* Couvre toute la zone du conteneur */
+            background-position: center; /* Centrer l'image */
+            height: 100vh; /* Hauteur de la fenêtre */
+            display: flex;
+            flex-direction: column; /* Disposition verticale */
+            justify-content: flex-start; /* Aligner le contenu vers le haut */
+            align-items: center; /* Centre le contenu horizontalement */
+            text-align: center; /* Centre le texte */
+            color: white; /* Couleur du texte */
+        }
+
+        .header {
+            padding: 20px;
+            text-align: center;
+            margin-top: 30px; /* Espace en haut */
+        }
+
+        .social-icons {
+            position: absolute; /* Positionnement absolu pour superposer */
+            top: 20px; /* Distance du haut */
+            right: 20px; /* Distance de la droite */
+            display: flex; /* Utiliser flexbox pour aligner les images */
+            gap: 10px; /* Espace entre les icônes */
+            z-index: 10; /* S'assurer que l'image soit au-dessus d'autres éléments */
+        }
+
+        .social-icons img {
+            width: 30px; /* Ajuster la largeur comme nécessaire */
+            height: auto; /* Garder le ratio */
+        }
+
+        .profile-image {
+            width: 150px; /* Largeur de l'image */
+            height: 150px; /* Hauteur de l'image */
+            border-radius: 50%; /* Arrondir l'image pour faire un cercle */
+            border: 5px solid rgba(255, 255, 255, 0.8); /* Bordure blanche semi-transparente */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Ombre pour donner de la profondeur */
+            margin-bottom: 20px; /* Espace en bas de l'image */
+            object-fit: cover; /* Ajuster l'image pour couvrir le cercle */
+            transition: transform 0.3s, box-shadow 0.3s; /* Transition pour l'effet au survol */
+        }
+
+        .profile-image:hover {
+            transform: scale(1.1); /* Légèrement zoomer au survol */
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.7); /* Ombre plus marquée au survol */
+        }
+
+        h5 {
+            font-size: 80px; /* Taille du nom */
+            margin: 0; /* Pas de marge */
+            color: #f40707; /* Couleur du texte */
+            text-shadow: 3px 3px 5px rgba(254, 66, 4, 0.8); /* Ombre pour le texte */
+            padding: 10px 20px; /* Espacement intérieur */
+            border-radius: 10px; /* Coins arrondis */
+            background: linear-gradient(90deg, #ff0000, #ff0000, #f80303); /* Dégradé de couleurs */
+            -webkit-background-clip: text; /* Clip du fond pour la couleur du texte */
+            -webkit-text-fill-color: transparent; /* Remplissage transparent pour le texte */
+            transition: transform 0.3s, box-shadow 0.3s; /* Transition pour l'effet au survol */
+        }
+
+        h1 {
+            font-size: 60px; /* Taille du titre principal */
+            color: #ffffff; /* Couleur du titre principal */
+            margin-top: 20px; /* Espace au-dessus du titre */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Ombre pour le texte */
+            padding: 10px 20px; /* Espacement intérieur */
+            border-radius: 10px; /* Coins arrondis */
+            background: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+            transition: transform 0.3s; /* Transition pour l'effet au survol */
+        }
+
+        h1:hover {
+            transform: scale(1.05); /* Léger zoom au survol */
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.9); /* Fond semi-transparent */
+            border-radius: 10px; /* Coins arrondis */
+            margin: 20px; /* Marges entre les sections */
+            padding: 20px; /* Espacement intérieur */
+            max-width: 800px; /* Largeur maximale */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre portée */
+            opacity: 0; /* Initialement caché */
+            transform: translateY(20px); /* Décalage vers le bas */
+            animation: fadeIn 0.5s forwards; /* Animation de fade-in */
+        }
+
+        h2 {
+            font-size: 36px; /* Taille du sous-titre */
+            margin: 10px 0; /* Marges en haut et en bas */
+            color: #4CAF50; /* Couleur du texte pour les sous-titres */
+            transition: color 0.3s; /* Transition pour la couleur */
+        }
+
+        h2:hover {
+            color: #FF5722; /* Changer la couleur au survol */
+        }
+
+        ul {
+            list-style-type: none; /* Retirer les puces */
+            padding: 0; /* Pas de remplissage */
+        }
+
+        li {
+            padding: 5px 0; /* Espacement entre les éléments de la liste */
+            color: #555; /* Couleur du texte des éléments de la liste */
+        }
+
+        p {
+            font-size: 16px; /* Taille de la police */
+            color: #333; /* Couleur du texte */
+            line-height: 1.6; /* Interligne */
+            margin: 10px 0; /* Marges en haut et en bas */
+        }
+
+        .whatsapp-image {
+            position: absolute; /* Positionnement absolu */
+            bottom: 20px; /* Distance du bas */
+            right: 20px; /* Distance de la droite */
+            width: 100px; /* Largeur de l'image, ajuste comme nécessaire */
+            height: auto; /* Hauteur automatique pour conserver le ratio */
+            z-index: 10; /* S'assurer que l'image soit au-dessus d'autres éléments */
+        }
+
+        /* Animation fade-in */
+        @keyframes fadeIn {
+            from {
+                opacity: 0; /* Commencer invisible */
+                transform: translateY(20px); /* Décalage vers le bas */
+            }
+            to {
+                opacity: 1; /* Devenir visible */
+                transform: translateY(0); /* Revenir à la position d'origine */
+            }
+        }
+
+        /* Ajouter une animation à chaque section avec un léger délai */
+        .section:nth-child(2) {
+            animation-delay: 0.2s; /* Délai pour la première section */
+        }
+        .section:nth-child(3) {
+            animation-delay: 0.4s; /* Délai pour la deuxième section */
+        }
+        .section:nth-child(4) {
+            animation-delay: 0.6s; /* Délai pour la troisième section */
+        }
+        .section:nth-child(5) {
+            animation-delay: 0.8s; /* Délai pour la quatrième section */
+        }
+        .section:nth-child(6) {
+            animation-delay: 1s; /* Délai pour la cinquième section */
+        }
+        
+        .footer h3 {
+            margin: 0; /* Pas de marge */
+            font-size: 24px; /* Taille du titre du pied de page */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Ombre pour le texte */
+        }
+
+        .footer a {
+            color: #ffdf80; /* Couleur des liens */
+            text-decoration: none; /* Pas de soulignement */
+            transition: color 0.3s; /* Transition pour la couleur */
+        }
+
+        .footer a:hover {
+            color: #ffffff; /* Changer la couleur au survol */
+        }
+        .section:nth-child(2) {
+            animation-delay: 0.2s; /* Délai pour la première section */
+        }
+        .section:nth-child(3) {
+            animation-delay: 0.4s; /* Délai pour la deuxième section */
+        }
+        .section:nth-child(4) {
+            animation-delay: 0.6s; /* Délai pour la troisième section */
+        }
+        .section:nth-child(5) {
+            animation-delay: 0.8s; /* Délai pour la quatrième section */
+        }
+        .section:nth-child(6) {
+            animation-delay: 1s; /* Délai pour la cinquième section */
+        }
+        
+        .footer {
+            background: linear-gradient(90deg, #4CAF50, #FF9800); /* Dégradé de couleurs */
+            color: white; /* Couleur du texte */
+            text-align: center; /* Centrer le texte */
+            padding: 20px; /* Espacement intérieur */
+            position: relative; /* Position relative pour le contenu */
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3); /* Ombre portée */
+            margin-top: 20px; /* Marge en haut */
+        }
+    </style>
+</head>
+<body>
+    <div class="background-container">
+        <div class="header">
+            <img src="file:///C:/Users/dell/Desktop/projet%201/WhatsApp%20Image%202024-05-05%20à%2023.54.23_6b4284a6.jpg" alt="WhatsApp" class="profile-image">
+            <h5>YASSINE EL AROUSY</h5>
+            <h1>Mon Portfolio</h1>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/yassine-el-arousy-97262120a/" target="_blank">
+                    <img src="https://pngimg.com/uploads/linkedIn/linkedIn_PNG7.png" alt="LinkedIn Logo">
+                </a>
+                <a href="https://www.facebook.com/"><!-- Remplace ceci par l'URL de ton profil Facebook -->
+                    <img src="https://cdn.pixabay.com/photo/2021/06/15/12/51/facebook-6338507_1280.png" alt="Facebook Logo">
+                </a>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Contact</h2>
+            <p>Email: <a href="mailto:Elarousyy@gmail.com">Elarousyy@gmail.com</a></p>
+            <p>Téléphone: +212 6 30 52 75 85</p>
+            <p>Localisation: Casablanca</p>
+            <p>Disponible à partir de Janvier 2024</p>
+        </div>
+
+        <div class="section">
+            <h2>Expériences Professionnelles</h2>
+            <p><strong>Ministère de l'économie et des finances (TGR)</strong> <em>(Juillet 2023 - Août 2023)</em></p>
+            <ul>
+                <li>Gestion des ressources financières</li>
+                <li>Optimisation des flux financiers</li>
+            </ul>
+            <p><strong>FIFA CLUB WORLD CUP</strong> <em>(Janvier 2023 - Février 2023)</em></p>
+            <ul>
+                <li>Planification et mise en œuvre du système de gestion d'accès</li>
+                <li>Gestion des accréditations</li>
+                <li>Contrôle d'accès</li>
+                <li>Gestion du personnel</li>
+            </ul>
+            <p><strong>Business Conseil</strong> <em>(Juillet 2021 - Août 2021)</em></p>
+            <ul>
+                <li>Application des connaissances théoriques</li>
+                <li>Compréhension du fonctionnement d'un cabinet comptable</li>
+                <li>Acquisition de compétences pratiques</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Diplômes et Formations</h2>
+            <p><strong>ENCG CASABLANCA</strong> <em>(Depuis Septembre 2021)</em></p>
+            <ul>
+                <li>Master en Audit et contrôle de gestion</li>
+            </ul>
+            <p><strong>CPGE</strong> <em>(Septembre 2019 - Juin 2021)</em></p>
+            <ul>
+                <li>Economie et commerce technologique</li>
+            </ul>
+            <p><strong>Lycée Ben Abbad</strong> <em>(Septembre 2018 - Juin 2019)</em></p>
+            <ul>
+                <li>Gestion Comptable</li>
+                <li>Baccalauréat</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Langues</h2>
+            <ul>
+                <li>Français : Courant</li>
+                <li>Anglais : Courant</li>
+                <li>Espagnol : Notions de base</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Informatique</h2>
+            <ul>
+                <li>Analyses statistiques</li>
+                <li>Analyse et documentation avec Python</li>
+                <li>Gestion de données financières</li>
+                <li>Présentation des projets</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Compétences</h2>
+            <ul>
+                <li>Observation : Réalisation d'observations objectives</li>
+                <li>Prise de décision</li>
+                <li>Évaluation</li>
+                <li>Modélisation</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Centres d'intérêt</h2>
+            <ul>
+                <li>Audit et contrôle de gestion</li>
+                <li>Échecs</li>
+                <li>Lecture</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Certifications</h2>
+            <ul>
+                <li>FIFA - Volunteer</li>
+                <li>IBM - Analyse de données</li>
+            </ul>
+        </div>
+
+            
+    
+            <!-- Section Footer -->
+            <div class="footer">
+                <h3>Merci de votre visite !</h3>
+                <p>Connectez-vous avec moi sur les réseaux sociaux :</p>
+                <p>
+                    <a href="https://www.linkedin.com/in/yassine-el-arousy-97262120a/" target="_blank">LinkedIn</a> | 
+                    <a href="https://www.facebook.com/" target="_blank">Facebook</a>
+                </p>
+                <p>&copy; 2024 Yassine El Arousy. Tous droits réservés.</p>
+            </div>
+            
+                
+   
+    </div>
+    
+    
+</body>
+</html>
